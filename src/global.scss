@@ -1,0 +1,45 @@
+$primary-dark: #07744c;
+$primary-med: #0B9160;
+$primary-light: #83DBBB;
+
+$secondary-blue: #3782DA;
+$secondary-purple: #644883;
+$secondary-yellow: #F7B434;
+$secondary-red: #DC4E3A;
+
+$black: #0D1412;
+$white: #FCFFFE;
+
+html {
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+
+  a {
+    color: $primary-dark;
+    font-weight: 500;
+  }
+
+  .breadcrumbs {
+
+  }
+}
