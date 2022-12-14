@@ -1,14 +1,4 @@
-$primary-dark: #07744c;
-$primary-med: #0B9160;
-$primary-light: #83DBBB;
-
-$secondary-blue: #3782DA;
-$secondary-purple: #644883;
-$secondary-yellow: #F7B434;
-$secondary-red: #DC4E3A;
-
-$black: #0D1412;
-$white: #FCFFFE;
+@use './variables.scss' as v;
 
 html {
   font-size: 16px;
@@ -35,7 +25,7 @@ p {
   font-weight: 400;
 
   a {
-    color: $primary-dark;
+    color: v.$primary-dark;
     font-weight: 500;
   }
 
