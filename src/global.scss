@@ -1,5 +1,9 @@
 @use './variables.scss' as v;
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
 }
@@ -30,6 +34,30 @@ p {
   }
 
   .breadcrumbs {
+
+  }
+}
+
+button {
+  border-radius: .75rem;
+
+  font-size: 1.25rem;
+  &.primary {
+    background-color: v.$primary-dark;
+    color: v.$white;
+    padding: 0 1.6rem;
+    border: none;
+
+
+    font-weight: 500;
+    line-height: 3rem;
+  }
+
+  &.secondary {
+    background-color: v.$white;
+    border: .15rem solid v.$primary-med;
+    color: v.$primary-med;
+    padding: .65rem 1.6rem;
 
   }
 }

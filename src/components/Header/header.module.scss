@@ -1,0 +1,44 @@
+@use '../../variables.scss' as v;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 3vw 0;
+
+
+  img {
+    width: 11rem;
+  }
+
+  .navbar {
+    flex-grow: 1;
+    margin-left: 2rem;
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style-type: none;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+
+      li {
+        height: 100%;
+        width: 30%;
+        text-align: center;
+        padding-top: 1.75rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    .selected {
+      border-bottom: 2px solid v.$primary-light;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+}
