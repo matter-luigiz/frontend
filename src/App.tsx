@@ -1,38 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './global.scss';
-import Styles from './App.module.scss';
-import classNames from "classnames/bind";
-import Header from "./components/Header/Header";
-
-const cx = classNames.bind(Styles);
+import { Routes, Route } from "react-router-dom";
+import Home from './routes/Home/Home';
+import Learn from "./routes/Learn/Learn";
+import Search from "./routes/Search/Search";
+import Supply from "./routes/Supply/Supply";
 
 function App() {
-    const [listing, setListing] = useState();
-    const [error, setError] = useState('');
-    const [site, setSite] = useState('');
-
-    const getListing = (site: string) => fetch(`http://${process.env.REACT_APP_BACKEND_URL}/${site}`)
-        .then(res => res.json())
-        .then(res => setListing(res))
-        .catch(() => setError(`Failed to get listing for site ${site}`));
-
-    const tabs = [
-        { text: 'Find Materials', link: '', selected: true},
-        { text: 'Learn', link: '', selected: false},
-        { text: 'Suppliers: Get Listed', link: '', selected: false}
-    ];
-
     return (
-        <div className={cx('App')}>
-            <Header tabs={tabs}/>
-            <form onSubmit={e => { e.preventDefault(); getListing(site).then(r => r); } }>
-                <input value={site} onChange={e => setSite(e.target.value)}/>
-                <input type={"submit"} />
-            </form>
-
-            <p>{error ? error : listing ? JSON.stringify(listing) : 'Enter a site'}</p>
+        <div className={'App'}>
+            <Routes>
+                <Route path={'/'} element={ <Home /> } />
+                <Route path={'/learn'} element={ <Learn /> } />
+                <Route path={'/search'} element={ <Search /> } />
+                <Route path={'/supply'} element={ <Supply /> } />
+            </Routes>
         </div>
-    );
+    )
 }
 
 export default App;
