@@ -1,6 +1,7 @@
 import React from "react";
 import textlogo from '../../icons/textlogo.svg';
 import Styles from './header.module.scss';
+import {Link, useNavigate} from "react-router-dom";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(Styles);
@@ -17,15 +18,18 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
     const {tabs} = props;
+    const navigate = useNavigate();
 
     return (
         <header className={cx('header')}>
-            <img src={textlogo} alt={'matter'}/>
+            <Link to={'/'} className={cx('homelink')}><img src={textlogo} alt={'matter'}/></Link>
             <nav className={cx('navbar')}>
                 <ul>
                     {
                         tabs.map(tab =>
-                            <li className={cx({'selected': tab.selected})}>{tab.text}</li>
+                            <li className={cx({'selected': tab.selected})} onClick={() => navigate(tab.link)}>
+                                <Link to={tab.link}>{tab.text}</Link>
+                            </li>
                         )
                     }
                 </ul>

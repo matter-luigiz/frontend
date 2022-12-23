@@ -5,12 +5,19 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  padding: 1rem 3vw 0;
+  padding: 0 3vw 0;
+  border-bottom: 1px solid v.$light-grey;
+  position: sticky;
+  top: 0;
 
-
-  img {
-    width: 11rem;
+  .homelink {
+    padding-top: .75rem;
+    img {
+      width: 11rem;
+    }
   }
+
+
 
   .navbar {
     flex-grow: 1;
@@ -29,15 +36,28 @@
         text-align: center;
         padding-top: 1.75rem;
         padding-bottom: 1rem;
+        transition: background-color .25s;
+
+        a {
+          text-decoration: none;
+          color: v.$black;
+        }
+
+        &:hover {
+          background-color: v.$light-grey;
+          cursor: pointer;
+        }
       }
     }
 
     .selected {
-      border-bottom: 2px solid v.$primary-light;
+      border-bottom: 2px solid v.$primary-med;
     }
   }
 
   .buttons {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
     display: flex;
     gap: 1rem;
   }

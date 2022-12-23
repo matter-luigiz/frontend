@@ -8,6 +8,10 @@ html {
   font-size: 16px;
 }
 
+div.page {
+  padding: 2rem 3vw 0;
+}
+
 h1 {
   font-size: 4rem;
   font-weight: 500;
@@ -59,5 +63,9 @@ button {
     color: v.$primary-med;
     padding: .65rem 1.6rem;
 
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
