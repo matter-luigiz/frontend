@@ -5,7 +5,7 @@ const Search = () => {
     return (
         <div className={'search'}>
             <div className={'page'}>
-                Welcome to Search!
+                <h1>Search for materials</h1>
             </div>
         </div>
     );
