@@ -15,6 +15,7 @@ div.page {
 h1 {
   font-size: 4rem;
   font-weight: 500;
+  margin-bottom: 1.75rem;
 }
 
 h2 {
@@ -44,8 +45,9 @@ p {
 
 button {
   border-radius: .75rem;
-
   font-size: 1.25rem;
+  transition: background-color .25s;
+
   &.primary {
     background-color: v.$primary-dark;
     color: v.$white;
@@ -55,6 +57,10 @@ button {
 
     font-weight: 500;
     line-height: 3rem;
+
+    &:hover {
+      background-color: v.$primary-med;
+    }
   }
 
   &.secondary {
@@ -62,6 +68,10 @@ button {
     border: .15rem solid v.$primary-med;
     color: v.$primary-med;
     padding: .65rem 1.6rem;
+
+    &:hover {
+      background-color: v.$primary-light;
+    }
 
   }
 
