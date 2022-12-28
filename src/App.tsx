@@ -25,7 +25,7 @@ function App() {
                 <Route path={'/learn'} element={ <Learn /> } />
                 <Route path={'/search'} element={ <Search /> } />
                 <Route path={'/supply'} element={ <Supply /> } />
-                <Route path={'/product/:id'} element={ <ProductPage /> } />
+                <Route path={'/product/:site/:id'} element={ <ProductPage /> } />
             </Routes>
         </div>
     )
