@@ -4,6 +4,7 @@ import Styles from './Search.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
 import {useSearchParams} from "react-router-dom";
+import ProductTile from "../../components/ProductTile/ProductTile";
 
 const cx = classNames.bind(Styles);
 
@@ -115,7 +116,7 @@ const Search = () => {
                         : 'Loading Categories...'
                     }
                 </div> : <div className={cx('results')}>
-
+                    <ProductTile name={'Test Prod'} type={'Fabric'} liked={true} alt={'Test Prod'} imageUrl={'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'} price={5.30} />
                 </div>}
             </div>
         </div>
