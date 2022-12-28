@@ -9,6 +9,8 @@
   border-bottom: 1px solid v.$light-grey;
   position: sticky;
   top: 0;
+  background-color: v.$white;
+  z-index: 2;
 
   .homelink {
     padding-top: .75rem;

@@ -2,19 +2,11 @@ import React, {useState} from "react";
 import Styles from './ProductTile.module.scss';
 import classNames from "classnames/bind";
 import {ReactComponent as Heart} from '../../icons/heart.svg';
+import Product from "../../types/Product";
 
 const cx = classNames.bind(Styles);
 
-type ProductTileProps = {
-    name: string;
-    type: string;
-    price?: Number;
-    imageUrl: string;
-    alt: string;
-    liked: Boolean;
-}
-
-const ProductTile = (props: ProductTileProps) => {
+const ProductTile = (props: Product) => {
     const [liked, setLiked] = useState(false);
 
     return (

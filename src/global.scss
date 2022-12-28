@@ -8,8 +8,18 @@ html {
   font-size: 16px;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 div.page {
   padding: 0 3vw 0;
+}
+
+h1, h2, h3 {
+  font-family: 'League Spartan', sans-serif;
 }
 
 h1 {
@@ -30,7 +40,7 @@ h3 {
 
 p {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 400;
 
   a {

@@ -4,7 +4,8 @@ import Styles from './Search.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
 import {useSearchParams} from "react-router-dom";
-import ProductTile from "../../components/ProductTile/ProductTile";
+import ProductGrid from "../../components/ProductGrid/ProductGrid";
+import Product from "../../types/Product";
 
 const cx = classNames.bind(Styles);
 
@@ -13,6 +14,17 @@ interface Category {
     image: string;
     alt: string;
 }
+
+const testprod = {
+    name: 'Test Prod',
+    type: 'Fabric',
+    liked: true,
+    alt: 'Test Prod',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
+    price: 5.30
+};
+
+const testproducts: Product[] = Array(30).fill(testprod);
 
 const Search = () => {
     const [search, setSearch] = useState('');
@@ -41,11 +53,13 @@ const Search = () => {
     useEffect(() => {
         if (searchParams.has('q')) {
             setSearch(searchParams.get('q') ?? '');
+            setShowingResults(true);
         }
         if (searchParams.has('cat')) {
             setCategory(catOptions.find(cat =>
                 cat.value.toLowerCase() === (searchParams.get('cat') ?? '').toLowerCase()
-            ) ?? catOptions[0])
+            ) ?? catOptions[0]);
+            setShowingResults(true);
         }
     }, [catOptions, searchParams]);
 
@@ -116,7 +130,11 @@ const Search = () => {
                         : 'Loading Categories...'
                     }
                 </div> : <div className={cx('results')}>
-                    <ProductTile name={'Test Prod'} type={'Fabric'} liked={true} alt={'Test Prod'} imageUrl={'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png'} price={5.30} />
+                    <p className={cx('results-count')}>
+                        {testproducts.length} results
+                        {searchParams.has('q') ? ' for ' : ''} {searchParams.has('q') && <span>{searchParams.get('q')}</span>}
+                    </p>
+                    <ProductGrid products={testproducts} />
                 </div>}
             </div>
         </div>
