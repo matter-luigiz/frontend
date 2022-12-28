@@ -5,6 +5,7 @@ type Product = {
     imageUrl: string;
     alt: string;
     liked: Boolean;
+    id: Number;
 }
 
 export default Product;

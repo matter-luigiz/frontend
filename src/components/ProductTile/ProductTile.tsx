@@ -3,6 +3,7 @@ import Styles from './ProductTile.module.scss';
 import classNames from "classnames/bind";
 import {ReactComponent as Heart} from '../../icons/heart.svg';
 import Product from "../../types/Product";
+import {Link} from "react-router-dom";
 
 const cx = classNames.bind(Styles);
 
@@ -22,7 +23,7 @@ const ProductTile = (props: Product) => {
                 <span className={cx('type')}>{props.type}</span>
                 {props.price && <span className={cx('price')}>{`$${props.price}/kg`}</span>}
             </div>
-
+            <Link to={`/product/${props.id}`} className={cx('product-link')} />
         </div>
     );
 };

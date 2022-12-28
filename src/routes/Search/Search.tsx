@@ -21,7 +21,8 @@ const testprod = {
     liked: true,
     alt: 'Test Prod',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
-    price: 5.30
+    price: 5.30,
+    id: 1
 };
 
 const testproducts: Product[] = Array(30).fill(testprod);

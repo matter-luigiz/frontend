@@ -6,6 +6,7 @@ import Learn from "./routes/Learn/Learn";
 import Search from "./routes/Search/Search";
 import Supply from "./routes/Supply/Supply";
 import Header from "./components/Header/Header";
+import ProductPage from "./routes/ProductPage/ProductPage";
 
 function App() {
     const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
                 <Route path={'/learn'} element={ <Learn /> } />
                 <Route path={'/search'} element={ <Search /> } />
                 <Route path={'/supply'} element={ <Supply /> } />
+                <Route path={'/product/:id'} element={ <ProductPage /> } />
             </Routes>
         </div>
     )
