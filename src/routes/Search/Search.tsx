@@ -3,6 +3,7 @@ import Select from 'react-select'
 import Styles from './Search.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
+import {useSearchParams} from "react-router-dom";
 
 const cx = classNames.bind(Styles);
 
@@ -14,19 +15,38 @@ interface Category {
 
 const Search = () => {
     const [search, setSearch] = useState('');
+    const [showingResults, setShowingResults] = useState(false);
 
     const [loading, , data] = useBackendReq('categories');
 
-    const catOptions = useMemo(() => !loading ? [
-        { value: 'all', label: 'All Categories'},
-        { value: 'fabrics', label: 'Fabrics'},
-        { value: 'packaging', label: 'Packaging'}
-    ] : [ { value: 'loading', label: 'Loading Categories...' }], [loading])
+    const catOptions = useMemo(() => {
+        if (loading) {
+            return [ { value: 'loading', label: 'Loading Categories...' }];
+        }
+        const allOption = { value: 'all', label: 'All Categories'};
+        let options = (data as Category[]).map(cat => ({ value: cat.name, label: cat.name }));
+        options.unshift(allOption);
+        return options;
+    }, [data, loading])
+
     const [category, setCategory] = useState(catOptions[0]);
 
     useEffect(() => {
         setCategory(catOptions[0]);
     }, [catOptions, loading]);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        if (searchParams.has('q')) {
+            setSearch(searchParams.get('q') ?? '');
+        }
+        if (searchParams.has('cat')) {
+            setCategory(catOptions.find(cat =>
+                cat.value.toLowerCase() === (searchParams.get('cat') ?? '').toLowerCase()
+            ) ?? catOptions[0])
+        }
+    }, [catOptions, searchParams]);
 
     const displayCategories = (data: Category[]) => data.map(cat => (
         <div key={cat.name} className={cx('category')}>
@@ -34,6 +54,15 @@ const Search = () => {
             {cat.name}
         </div>
     ));
+
+    const handleSearch = () => {
+        if (search !== '') {
+            setSearchParams({'q': search, 'cat': category.value});
+        } else {
+            setSearchParams({'cat': category.value});
+        }
+        setShowingResults(true);
+    }
 
 
     return (
@@ -52,7 +81,9 @@ const Search = () => {
                         <Select className={cx('cat-select')}
                                 options={catOptions}
                                 value={category}
-                                onChange={cat => setCategory(cat ? cat : catOptions[0])}
+                                onChange={cat => {
+                                    setCategory(cat ? cat : catOptions[0]);
+                                }}
                                 styles={{
                                     control: (baseStyles) => ({
                                         ...baseStyles,
@@ -70,10 +101,12 @@ const Search = () => {
                                 }}
                         />
                     </div>
-                    <button className={'primary'}>Search</button>
+                    <button className={'primary'} onClick={e => {
+                        e.preventDefault();
+                        handleSearch();
+                    }}>Search</button>
                 </form>
-
-                <div className={cx('categories')}>
+                {!showingResults ? <div className={cx('categories')}>
                     <h3>Find By Category</h3>
                     {!loading
                         ? <div className={cx('cat-grid')}>
@@ -81,7 +114,9 @@ const Search = () => {
                         </div>
                         : 'Loading Categories...'
                     }
-                </div>
+                </div> : <div className={cx('results')}>
+
+                </div>}
             </div>
         </div>
     );
