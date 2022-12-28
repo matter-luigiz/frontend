@@ -1,0 +1,23 @@
+@use '../../variables.scss' as v;
+
+.breadcrumbs {
+
+  .prev {
+    display: inline-flex;
+    .prevlink {
+      font-weight: 300;
+      color: v.$black;
+      text-decoration: none;
+    }
+
+    span {
+      margin-left: .3rem;
+      margin-right: .3rem;
+      font-size: .9rem;
+    }
+  }
+
+  .current {
+    font-weight: 400;
+  }
+}

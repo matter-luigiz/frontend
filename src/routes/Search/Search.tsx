@@ -3,7 +3,7 @@ import Select from 'react-select'
 import Styles from './Search.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
-import {useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import Product from "../../types/Product";
 
@@ -17,12 +17,13 @@ interface Category {
 
 const testprod = {
     name: 'Test Prod',
-    type: 'Fabric',
+    category: 'Fabric',
     liked: true,
     alt: 'Test Prod',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
     price: 5.30,
-    id: 1
+    id: 1,
+    site: 'test'
 };
 
 const testproducts: Product[] = Array(30).fill(testprod);
@@ -68,6 +69,7 @@ const Search = () => {
         <div key={cat.name} className={cx('category')}>
             <img src={cat.image} alt={cat.alt} />
             {cat.name}
+            <Link to={`/search?cat=${cat.name}`} className={cx('cat-link')} />
         </div>
     ));
 
@@ -113,6 +115,10 @@ const Search = () => {
                                         ...baseStyles,
                                         backgroundColor: state.isSelected ? '#0B9160' :
                                             state.isFocused ? '#83DBBB' : '#FCFFFE'
+                                    }),
+                                    menu: (baseStyles) => ({
+                                        ...baseStyles,
+                                        zIndex: 2
                                     })
                                 }}
                         />
