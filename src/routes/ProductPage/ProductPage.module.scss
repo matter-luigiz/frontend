@@ -1,0 +1,42 @@
+@use '../../variables.scss' as v;
+
+.product {
+  margin-top: 2rem;
+  .product-info {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .product-image {
+      width: 40%;
+
+    }
+    .product-text {
+      width: 55%;
+
+      h2 {
+        margin: 0;
+      }
+
+      p {
+        margin-top: .5rem;
+      }
+
+      .description {
+
+      }
+      .buttons {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+
+        button {
+          img {
+            width: 1rem;
+            margin-left: .2rem;
+          }
+        }
+      }
+    }
+  }
+}

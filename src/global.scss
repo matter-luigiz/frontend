@@ -18,7 +18,7 @@ body {
 }
 
 div.page {
-  padding: 0 3vw 0;
+  padding: 0 6vw 0;
 
 }
 
@@ -87,6 +87,14 @@ button {
       background-color: v.$primary-light;
     }
 
+  }
+
+  &.quaternary {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 1.15rem;
   }
 
   &:hover {
