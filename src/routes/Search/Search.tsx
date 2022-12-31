@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import Select from 'react-select'
 import Styles from './Search.module.scss';
 import classNames from "classnames/bind";
@@ -22,7 +22,7 @@ interface SearchState {
 const Search = () => {
     const [search, setSearch] = useState('');
     const [showingResults, setShowingResults] = useState(false);
-    const [searchState, setSearchState] = useState<SearchState>({category: 'all'});
+
 
     const [loading, , data] = useBackendReq('categories');
 
@@ -34,28 +34,29 @@ const Search = () => {
         let options = (data as Category[]).map(cat => ({ value: cat.name, label: cat.name }));
         options.unshift(allOption);
         return options;
-    }, [data, loading])
-
-    const [category, setCategory] = useState(catOptions[0]);
-
-    useEffect(() => {
-        setCategory(catOptions[0]);
-    }, [catOptions, loading]);
+    }, [data, loading]);
 
     const [searchParams, setSearchParams] = useSearchParams();
+
+    const findCategory = useCallback(() => (catOptions.find(cat =>
+        cat.value.toLowerCase() === (searchParams.get('cat') ?? '').toLowerCase()
+    ) ?? catOptions[0]), [catOptions, searchParams]);
+
+    const [category, setCategory] = useState(findCategory());
+    const [searchState, setSearchState] = useState<SearchState>({category: 'all'});
 
     useEffect(() => {
         if (searchParams.has('q')) {
             setSearch(searchParams.get('q') ?? '');
             setShowingResults(true);
+            setSearchState(state => ({...state, search: searchParams.get('q') ?? ''}));
         }
         if (searchParams.has('cat')) {
-            setCategory(catOptions.find(cat =>
-                cat.value.toLowerCase() === (searchParams.get('cat') ?? '').toLowerCase()
-            ) ?? catOptions[0]);
+            setCategory(findCategory());
             setShowingResults(true);
+            setSearchState(state => ({...state, category: findCategory().value}));
         }
-    }, [catOptions, searchParams]);
+    }, [catOptions, findCategory, searchParams]);
 
     const displayCategories = (data: Category[]) => data.map(cat => (
         <div key={cat.name} className={cx('category')}>
@@ -87,7 +88,7 @@ const Search = () => {
                             value={search}
                             onChange={e => setSearch(e.target.value)}
                             placeholder={'Keyword'}
-                            className={cx('searchbox')}
+                            className={'textinput'}
                         />
                         <Select className={cx('cat-select')}
                                 options={catOptions}
@@ -121,7 +122,7 @@ const Search = () => {
                         handleSearch();
                     }}>Search</button>
                 </form>
-                {!showingResults ? <div className={cx('categories')}>
+                {!showingResults || loading ? <div className={cx('categories')}>
                     <h3>Find By Category</h3>
                     {!loading
                         ? <div className={cx('cat-grid')}>
