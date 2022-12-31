@@ -4,12 +4,14 @@ import Styles from './ProductPage.module.scss';
 import classNames from "classnames/bind";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import externalLink from '../../icons/external.svg';
+import {useBackendReq} from "../../hooks";
+import Product from "../../types/Product";
 
 const cx = classNames.bind(Styles);
 
-const testprod = {
+const testprod: Product = {
     name: 'Test Prod',
-    category: 'Fabric',
+    category: 'Fabrics',
     liked: true,
     alt: 'Test Prod',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
@@ -23,7 +25,19 @@ const ProductPage = () => {
 
     console.log(params);
 
-    const product = testprod;
+    const [loading, error, data] = useBackendReq(`${params['site']}/${params['id']}`);
+
+    let product: Product;
+    if (loading || error) {
+        // return <div className={cx('product')}>
+        //     <div className={'page'}>
+        //         Loading...
+        //     </div>
+        // </div>
+        product = testprod;
+    } else {
+        product = data as Product;
+    }
 
     return <div className={cx('product')}>
         <div className={'page'}>
@@ -33,7 +47,7 @@ const ProductPage = () => {
                 <div className={cx('product-text')}>
                     <h2>{product.name}</h2>
                     <p>{product.category}</p>
-                    <h3>$ {product.price}/kg</h3>
+                    {product.price && <h3>{'$' + product.price + '/kg'}</h3>}
                     <div className={cx('description')}>
                         <h4>Information on Material</h4>
                     </div>
