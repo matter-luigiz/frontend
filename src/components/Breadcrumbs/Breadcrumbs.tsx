@@ -14,7 +14,7 @@ type Crumbs = {
 const Breadcrumbs = ({prev, current}: Crumbs) => {
     return (
         <div className={cx('breadcrumbs')}>
-            {prev.map(val => <div className={cx('prev')}>
+            {prev.map((val, ind) => <div className={cx('prev')} key={ind}>
                 <Link className={cx('prevlink')} key={val.link} to={val.link}>{val.text}</Link>
                 <span>&gt;</span>
             </div>)}

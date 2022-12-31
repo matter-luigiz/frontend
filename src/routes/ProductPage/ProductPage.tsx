@@ -23,8 +23,6 @@ const testprod: Product = {
 const ProductPage = () => {
     const params = useParams();
 
-    console.log(params);
-
     const [loading, error, data] = useBackendReq(`${params['site']}/${params['id']}`);
 
     let product: Product;

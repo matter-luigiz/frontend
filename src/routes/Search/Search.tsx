@@ -14,9 +14,15 @@ interface Category {
     alt: string;
 }
 
+interface SearchState {
+    search?: string;
+    category: string;
+}
+
 const Search = () => {
     const [search, setSearch] = useState('');
     const [showingResults, setShowingResults] = useState(false);
+    const [searchState, setSearchState] = useState<SearchState>({category: 'all'});
 
     const [loading, , data] = useBackendReq('categories');
 
@@ -65,6 +71,7 @@ const Search = () => {
         } else {
             setSearchParams({'cat': category.value});
         }
+        setSearchState({search: search, category: category.value})
         setShowingResults(true);
     }
 
@@ -122,7 +129,7 @@ const Search = () => {
                         </div>
                         : 'Loading Categories...'
                     }
-                </div> : <SearchResults category={category.value} search={search} />}
+                </div> : <SearchResults {...searchState} />}
             </div>
         </div>
     );
