@@ -4,6 +4,7 @@ import Product from "../../types/Product";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import Styles from './SearchResults.module.scss';
 import classNames from "classnames/bind";
+import Pagination from "../Pagination/Pagination";
 
 const cx = classNames.bind(Styles);
 
@@ -11,6 +12,9 @@ const cx = classNames.bind(Styles);
 type SearchProps = {
     search?: string;
     category: string;
+    page: number;
+    numPages: number;
+    updatePage: (newPage: number) => void;
 }
 
 const testprod = {
@@ -26,9 +30,9 @@ const testprod = {
 
 const testproducts: Product[] = Array(30).fill(testprod);
 
-const SearchResults = ({search, category}: SearchProps) => {
+const SearchResults = ({search, category, page, numPages, updatePage}: SearchProps) => {
 
-    const [loading, error, data] = useBackendReq(`search?cat=${category}${search ? `&q=${search}` : ''}`)
+    const [loading, error, data] = useBackendReq(`search?cat=${category}&page=${page}${search ? `&q=${search}` : ''}`)
 
     let results: Product[];
     if (loading || error) {
@@ -48,6 +52,9 @@ const SearchResults = ({search, category}: SearchProps) => {
             {search ? ' for ' : ''} {search && <span>{search}</span>}
         </p>
         <ProductGrid products={results} />
+        <div className={cx('pagination-ctr')}>
+            <Pagination numPages={numPages} curPage={page} handleUpdate={updatePage}/>
+        </div>
     </div>
 
 };

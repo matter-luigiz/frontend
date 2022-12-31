@@ -1,0 +1,30 @@
+@use "../../variables.scss" as v;
+
+.pagination {
+  button {
+    background: none;
+    border: 1px solid v.$primary-dark;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-radius: 0;
+    border-collapse: collapse;
+    color: v.$primary-dark;
+  }
+
+  button:first-child {
+    border-left-width: 2px;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+  }
+
+  button:last-child {
+    border-right-width: 2px;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+  }
+
+  .selected {
+    background-color: v.$primary-dark;
+    color: v.$white;
+  }
+}

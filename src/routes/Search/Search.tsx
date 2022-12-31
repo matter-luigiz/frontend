@@ -22,6 +22,7 @@ interface SearchState {
 const Search = () => {
     const [search, setSearch] = useState('');
     const [showingResults, setShowingResults] = useState(false);
+    const [page, setPage] = useState(1);
 
     const [loading, , data] = useBackendReq('categories');
 
@@ -63,6 +64,14 @@ const Search = () => {
         }
     }, [catOptions, findCategory, searchParams, loading]);
 
+    useEffect(() => {
+        if (searchParams.has('p')) {
+            setPage(parseInt(searchParams.get('p') ?? '1'));
+        } else {
+            setPage(1);
+        }
+    }, [searchParams]);
+
     const displayCategories = (data: Category[]) => data.map(cat => (
         <div key={cat.name} className={cx('category')}>
             <img src={cat.image} alt={cat.alt} />
@@ -71,15 +80,23 @@ const Search = () => {
         </div>
     ));
 
-    const handleSearch = () => {
-        if (search !== '') {
-            setSearchParams({'q': search, 'cat': category.value});
+    const handleSearch = (newPage?: number) => {
+        const pageToSet = newPage ?? 1;
+        if (search !== '' && newPage !== 1) {
+            setSearchParams({'q': search, 'cat': category.value, 'p': pageToSet.toString()});
+        } else if (newPage !== 1) {
+            setSearchParams({'cat': category.value, 'p': pageToSet.toString()});
         } else {
             setSearchParams({'cat': category.value});
         }
         setSearchState({search: search, category: category.value})
         setShowingResults(true);
     }
+
+    const handlePageUpdate = (newPage: number) => {
+        setPage(newPage);
+        handleSearch(newPage);
+    };
 
 
     return (
@@ -135,7 +152,7 @@ const Search = () => {
                         </div>
                         : 'Loading Categories...'
                     }
-                </div> : <SearchResults {...searchState} />}
+                </div> : <SearchResults {...searchState} page={page} numPages={10} updatePage={handlePageUpdate} />}
             </div>
         </div>
     );
