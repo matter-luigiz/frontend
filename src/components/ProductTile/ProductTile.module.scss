@@ -59,6 +59,14 @@
     .name {
       font-size: 1.5rem;
     }
+
+    .source {
+      background-color: v.$light-grey;
+      width: min-content;
+      padding: .15rem .5rem;
+      border-radius: .5rem;
+      margin-top: .5rem;
+    }
   }
 
   .product-link {

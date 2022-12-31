@@ -22,6 +22,7 @@ const ProductTile = (props: Product) => {
                 <span className={cx('name')}>{props.name}</span>
                 <span className={cx('type')}>{props.category}</span>
                 {props.price && <span className={cx('price')}>{`$${props.price}/kg`}</span>}
+                <span className={cx('source')}>{props.site}</span>
             </div>
             <Link to={`/product/${props.site}/${props.id}`} className={cx('product-link')} />
         </div>

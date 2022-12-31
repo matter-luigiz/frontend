@@ -23,7 +23,6 @@ const Search = () => {
     const [search, setSearch] = useState('');
     const [showingResults, setShowingResults] = useState(false);
 
-
     const [loading, , data] = useBackendReq('categories');
 
     const catOptions = useMemo(() => {
@@ -42,7 +41,7 @@ const Search = () => {
         cat.value.toLowerCase() === (searchParams.get('cat') ?? '').toLowerCase()
     ) ?? catOptions[0]), [catOptions, searchParams]);
 
-    const [category, setCategory] = useState(findCategory());
+    const [category, setCategory] = useState(catOptions[0]);
     const [searchState, setSearchState] = useState<SearchState>({category: 'all'});
 
     useEffect(() => {
@@ -51,12 +50,18 @@ const Search = () => {
             setShowingResults(true);
             setSearchState(state => ({...state, search: searchParams.get('q') ?? ''}));
         }
-        if (searchParams.has('cat')) {
+        if (searchParams.has('cat') && !loading) {
             setCategory(findCategory());
             setShowingResults(true);
             setSearchState(state => ({...state, category: findCategory().value}));
+        } else if (!loading) {
+            setCategory(catOptions[0]);
         }
-    }, [catOptions, findCategory, searchParams]);
+
+        if (!searchParams.has('q') && !searchParams.has('cat')) {
+            setShowingResults(false);
+        }
+    }, [catOptions, findCategory, searchParams, loading]);
 
     const displayCategories = (data: Category[]) => data.map(cat => (
         <div key={cat.name} className={cx('category')}>
