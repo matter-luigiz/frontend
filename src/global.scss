@@ -101,3 +101,19 @@ button {
     cursor: pointer;
   }
 }
+
+.textinput {
+  border: 3px solid v.$light-grey;
+  border-radius: .4rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+  width: 60%;
+  margin-right: 1.5rem;
+  transition: border-color .25s;
+
+  &:hover {
+    border-color: v.$dark-grey;
+  }
+}
