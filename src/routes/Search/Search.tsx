@@ -4,8 +4,7 @@ import Styles from './Search.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
 import {Link, useSearchParams} from "react-router-dom";
-import ProductGrid from "../../components/ProductGrid/ProductGrid";
-import Product from "../../types/Product";
+import SearchResults from "../../components/SearchResults/SearchResults";
 
 const cx = classNames.bind(Styles);
 
@@ -14,19 +13,6 @@ interface Category {
     image: string;
     alt: string;
 }
-
-const testprod = {
-    name: 'Test Prod',
-    category: 'Fabric',
-    liked: true,
-    alt: 'Test Prod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
-    price: 5.30,
-    id: 1,
-    site: 'test'
-};
-
-const testproducts: Product[] = Array(30).fill(testprod);
 
 const Search = () => {
     const [search, setSearch] = useState('');
@@ -136,13 +122,7 @@ const Search = () => {
                         </div>
                         : 'Loading Categories...'
                     }
-                </div> : <div className={cx('results')}>
-                    <p className={cx('results-count')}>
-                        {testproducts.length} results
-                        {searchParams.has('q') ? ' for ' : ''} {searchParams.has('q') && <span>{searchParams.get('q')}</span>}
-                    </p>
-                    <ProductGrid products={testproducts} />
-                </div>}
+                </div> : <SearchResults category={category.value} search={search} />}
             </div>
         </div>
     );
