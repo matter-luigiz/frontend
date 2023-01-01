@@ -52,19 +52,19 @@ const Supply = () => {
     }
 
     return (
-        <div className={'supply'}>
+        <div className={cx('supply')}>
             <div className={'page'}>
                 <div className={cx('heading')}>
                     <img src={''} alt={''}/>
                     <div className={cx('text')}>
                         <h1>Join our materials directory today as a
-                            <span> sustainable or ethical</span> supplier.</h1>
+                            <span className={'green'}> sustainable or ethical</span> supplier.</h1>
                         <p>Fill out the following form with your supplier business information.
                             Our team will review your application and get back to you within 15 business days.</p>
                     </div>
                 </div>
                 <form className={cx('form')}>
-                    <p>* = Required Field</p>
+                    <p className={cx('req')}>* = Required Field</p>
                     <div className={cx('contact')}>
                         <div className={cx('input-label')}>
                             <label htmlFor={'name'}>Supplier/Business Name*</label>

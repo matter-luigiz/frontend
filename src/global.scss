@@ -44,7 +44,7 @@ h3 {
 
 p {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
 
   a {
@@ -116,4 +116,8 @@ button {
   &:hover {
     border-color: v.$dark-grey;
   }
+}
+
+span.green {
+  color: v.$primary-dark;
 }

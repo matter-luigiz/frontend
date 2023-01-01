@@ -1,0 +1,78 @@
+.supply {
+  .heading {
+
+  }
+
+  .form {
+    label {
+      margin-bottom: .5rem;
+      font-size: 1.25rem;
+    }
+
+    & > div {
+      margin-bottom: 2rem;
+    }
+
+    .req {
+      font-weight: 700;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+
+      .input-label {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+
+    .categories {
+      .boxes {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-row-gap: 2rem;
+
+        label {
+          font-size: 1rem;
+          margin-left: .25rem;
+        }
+      }
+    }
+
+    .description {
+      textarea {
+        margin-top: .5rem;
+        width: 100%;
+        min-height: 8rem;
+
+        font-family: Roboto, sans-serif;
+      }
+    }
+
+    .certifications {
+      .uploads {
+        label {
+          font-weight: 700;
+          font-size: 1rem;
+        }
+
+        .upload-inputs {
+          margin-top: .25rem;
+          .uploadinput {
+            margin-left: 1.5rem;
+          }
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    margin-bottom: 2rem;
+  }
+}
