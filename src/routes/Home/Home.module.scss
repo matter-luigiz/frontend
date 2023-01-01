@@ -1,0 +1,20 @@
+.home {
+  .heading {
+
+  }
+  .learn {
+    text-align: center;
+  }
+  .supply {
+
+  }
+  .signup-ctr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .signup {
+      width: 50%;
+      text-align: center;
+    }
+  }
+}
