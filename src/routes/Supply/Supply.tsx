@@ -2,6 +2,7 @@ import React, {useMemo, useState} from "react";
 import Styles from './Supply.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
+import {Link} from "react-router-dom";
 
 const cx = classNames.bind(Styles);
 
@@ -89,7 +90,7 @@ const Supply = () => {
                     <div className={cx('certifications')}>
                         <label>Upload proof of certifications*</label>
                         <p>We accept links and PDFs including unique keys with validation that your certification is valid.
-                            To learn about what kind of certifications we are looking for in suppliers that we showcase in our directory, go to Learn.</p>
+                            To learn about what kind of certifications we are looking for in suppliers that we showcase in our directory, go to <Link to={'/learn'}>Learn</Link>.</p>
                         <div className={cx('uploads')}>
                             {renderUploads()}
                         </div>

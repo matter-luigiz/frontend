@@ -95,6 +95,10 @@ button {
     text-decoration: underline;
     font-weight: 500;
     font-size: 1.15rem;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &:hover {
@@ -120,4 +124,12 @@ button {
 
 span.green {
   color: v.$primary-dark;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
