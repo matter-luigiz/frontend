@@ -24,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy-production": "react-scripts build && scp -r ./build/* gabe@165.22.176.129:/var/www/luigiz-matter.tech/html"
   },
   "eslintConfig": {
     "extends": [

@@ -6,7 +6,8 @@ const useBackendReq = (path: string) => {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        fetch(`http://${process.env.REACT_APP_BACKEND_URL}/${path}`)
+        fetch(`https://${process.env.NODE_ENV === "production" ? 
+            process.env.REACT_APP_HOSTED_BACKEND_URL : process.env.REACT_APP_LOCAL_BACKEND_URL}/${path}`)
             .then(res => res.json())
             .then(res => {
                 setData(res);
