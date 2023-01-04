@@ -7,9 +7,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 3rem;
     .product-image {
-      width: 40%;
-
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
     }
     .product-text {
       width: 55%;
@@ -24,18 +27,37 @@
 
       .description {
 
+        h4 {
+          margin-bottom: 1rem;
+        }
+
+        margin-bottom: 2rem;
+
       }
+
+      .field {
+        margin-bottom: 2rem;
+      }
+
       .buttons {
         width: 100%;
         display: flex;
         gap: 1rem;
 
         button {
+          position: relative;
           img {
             width: 1rem;
             margin-left: .2rem;
           }
+
+          .supply-link {
+            color: v.$white;
+            text-decoration: none;
+          }
         }
+
+
       }
     }
   }

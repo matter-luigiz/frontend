@@ -5,52 +5,65 @@ import classNames from "classnames/bind";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import externalLink from '../../icons/external.svg';
 import {useBackendReq} from "../../hooks";
-import Product from "../../types/Product";
+import Product, {convertToProduct} from "../../types/Product";
 
 const cx = classNames.bind(Styles);
 
-const testprod: Product = {
-    name: 'Test Prod',
-    category: 'Fabrics',
-    liked: true,
-    alt: 'Test Prod',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
-    price: '5.30',
-    id: 1,
-    site: 'test'
+
+const capitalize = (str: string) => {
+    let words = str.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase());
+    return words.join(' ');
 };
 
 const ProductPage = () => {
     const params = useParams();
 
-    const [loading, error, data] = useBackendReq(`${params['site']}/${params['id']}`);
+    const [loading, error, data] = useBackendReq(`product/${params['id']}`);
 
     let product: Product;
-    if (loading || error) {
-        // return <div className={cx('product')}>
-        //     <div className={'page'}>
-        //         Loading...
-        //     </div>
-        // </div>
-        product = testprod;
+    if (loading) {
+        return <div className={cx('product')}>
+            <div className={'page'}>
+                Loading...
+            </div>
+        </div>
+    } else if (error) {
+        return <div className={cx('product')}>
+            <div className={'page'}>
+                {'Error :( : ' + error}
+            </div>
+        </div>
     } else {
-        product = data as Product;
+        product = convertToProduct(data);
     }
 
     return <div className={cx('product')}>
         <div className={'page'}>
             <Breadcrumbs prev={[{text: product.category, link: `/search?cat=${product.category}`}]} current={product.name} />
             <div className={cx('product-info')}>
-                <img src={product.image} alt={product.alt} className={cx('product-image')} />
+                <div className={cx('product-image')}>
+                    <img src={product.image} alt={product.alt} className={cx('product-image')} />
+                </div>
                 <div className={cx('product-text')}>
                     <h2>{product.name}</h2>
                     <p>{product.category}</p>
-                    {product.price && <h3>{'$' + product.price + '/kg'}</h3>}
-                    <div className={cx('description')}>
+                    {product.price && <h3>{product.price}</h3>}
+                    {product.description && <div className={cx('description')}>
                         <h4>Information on Material</h4>
-                    </div>
+                        {product.description}
+                    </div>}
+                    {product.otherFields && Object.entries(product.otherFields).map((field: any[]) => (
+                        <div className={cx('field')} key={field[0]}>
+                            <h4>{capitalize(field[0])}</h4>
+                            {field[1]}
+                        </div>
+                    ))}
                     <div className={cx('buttons')}>
-                        <button className={'primary'}>View on supplier's site <img src={externalLink} alt={''}/></button>
+                        <button className={'primary'}>
+                            <a href={product.link} className={cx('supply-link')} target={'_blank'} rel="noreferrer">
+                                View on supplier's site <img src={externalLink} alt={''}/>
+                            </a>
+                        </button>
                         <button className={'quaternary'}>Save for Later</button>
                     </div>
                 </div>
