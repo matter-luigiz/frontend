@@ -16,14 +16,8 @@ const Pagination = (props: PaginationProps) => {
 
     const pages = Array.from({length: numPages}, (_, i) => i + 1);
 
-    // let pages = [];
-    //
-    // if (curPage === 1) {
-    //     pages =
-    // }
-
     return (<div className={cx('pagination')}>
-        <button onClick={() => curPage > 1 && handleUpdate(curPage - 1)}>Previous</button>
+        {numPages > 1 && <button onClick={() => curPage > 1 && handleUpdate(curPage - 1)}>Previous</button>}
         {pages.map(page =>
             <button
                 className={cx({'selected': page === curPage})}
@@ -31,7 +25,7 @@ const Pagination = (props: PaginationProps) => {
                 onClick={() => handleUpdate(page)}
             >{page}</button>
         )}
-        <button onClick={() => curPage < numPages && handleUpdate(curPage + 1)}>Next</button>
+        {numPages > 1 && <button onClick={() => curPage < numPages && handleUpdate(curPage + 1)}>Next</button>}
     </div>)
 };
 
