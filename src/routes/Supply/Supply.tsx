@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import Styles from './Supply.module.scss';
 import classNames from "classnames/bind";
 import {useBackendReq} from "../../hooks";
@@ -17,6 +17,10 @@ interface Upload {
 }
 
 const Supply = () => {
+
+    useEffect(() => {
+        document.title = 'Supply | Matter';
+    }, []);
 
     const [loading, , data] = useBackendReq('categories');
 

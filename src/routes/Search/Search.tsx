@@ -72,6 +72,10 @@ const Search = () => {
         }
     }, [searchParams]);
 
+    useEffect(() => {
+        document.title = 'Find Materials | Matter';
+    }, []);
+
     const displayCategories = (data: Category[]) => data.map(cat => (
         <div key={cat.name} className={cx('category')}>
             <img src={cat.image} alt={cat.alt} />

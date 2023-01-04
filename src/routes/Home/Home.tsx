@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Styles from './Home.module.scss';
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(Styles);
 
 const Home = () => {
+
+    useEffect(() => {
+        document.title = 'Matter';
+    }, []);
 
     return (
         <div className={cx('home')}>

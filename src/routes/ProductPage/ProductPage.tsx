@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import Styles from './ProductPage.module.scss';
 import classNames from "classnames/bind";
@@ -21,6 +21,11 @@ const ProductPage = () => {
     const [loading, error, data] = useBackendReq(`product/${params['id']}`);
 
     let product: Product;
+
+    useEffect(() => {
+        document.title = 'View Product | Matter';
+    }, []);
+
     if (loading) {
         return <div className={cx('product')}>
             <div className={'page'}>
