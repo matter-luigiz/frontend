@@ -13,47 +13,43 @@ type SearchProps = {
     search?: string;
     category: string;
     page: number;
-    numPages: number;
     updatePage: (newPage: number) => void;
 }
 
-const testprod = {
-    name: 'Test Prod',
-    category: 'Fabric',
-    liked: true,
-    alt: 'Test Prod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
-    price: 5.30,
-    id: 1,
-    site: 'test'
-};
+const SearchResults = ({search, category, page, updatePage}: SearchProps) => {
 
-const testproducts: Product[] = Array(30).fill(testprod);
-
-const SearchResults = ({search, category, page, numPages, updatePage}: SearchProps) => {
-
-    const [loading, error, data] = useBackendReq(`search?cat=${category}&page=${page}${search ? `&q=${search}` : ''}`)
+    const [loading, error, data] = useBackendReq(`search?cat=${category}&p=${page}${search ? `&q=${search}` : ''}`);
 
     let results: Product[];
+    let count: number;
     if (loading || error) {
-        // return <div className={cx('product')}>
-        //     <div className={'page'}>
-        //         Loading...
-        //     </div>
-        // </div>
-        results = testproducts;
+        return <div className={cx('product')}>
+            <div className={'page'}>
+                Loading...
+            </div>
+        </div>
     } else {
-        results = data as Product[];
+        const res = data as {data: any[], size: number};
+        results = (res.data).map(item =>
+            ({
+                name: item[0],
+                image: item[1].Image.slice(6),
+                category: item[1].category || item[1]['Commodity Type'],
+                price: item[1]['Price per tons'],
+                site: item[1].Site,
+                otherFields: {...item[1]}
+            })) as Product[];
+        count = res.size;
     }
 
     return <div className={cx('results')}>
         <p className={cx('results-count')}>
-            {results.length} results
+            {count} results
             {search ? ' for ' : ''} {search && <span>{search}</span>}
         </p>
         <ProductGrid products={results} />
         <div className={cx('pagination-ctr')}>
-            <Pagination numPages={numPages} curPage={page} handleUpdate={updatePage}/>
+            <Pagination numPages={Math.ceil(count / 20)} curPage={page} handleUpdate={updatePage}/>
         </div>
     </div>
 

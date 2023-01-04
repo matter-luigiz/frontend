@@ -152,7 +152,7 @@ const Search = () => {
                         </div>
                         : 'Loading Categories...'
                     }
-                </div> : <SearchResults {...searchState} page={page} numPages={10} updatePage={handlePageUpdate} />}
+                </div> : <SearchResults {...searchState} page={page} updatePage={handlePageUpdate} />}
             </div>
         </div>
     );

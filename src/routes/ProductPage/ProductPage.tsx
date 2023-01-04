@@ -14,8 +14,8 @@ const testprod: Product = {
     category: 'Fabrics',
     liked: true,
     alt: 'Test Prod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
-    price: 5.30,
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png',
+    price: '5.30',
     id: 1,
     site: 'test'
 };
@@ -41,7 +41,7 @@ const ProductPage = () => {
         <div className={'page'}>
             <Breadcrumbs prev={[{text: product.category, link: `/search?cat=${product.category}`}]} current={product.name} />
             <div className={cx('product-info')}>
-                <img src={product.imageUrl} alt={product.alt} className={cx('product-image')} />
+                <img src={product.image} alt={product.alt} className={cx('product-image')} />
                 <div className={cx('product-text')}>
                     <h2>{product.name}</h2>
                     <p>{product.category}</p>

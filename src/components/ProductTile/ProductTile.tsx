@@ -13,7 +13,7 @@ const ProductTile = (props: Product) => {
     return (
         <div className={cx('tile')}>
             <div className={cx('image')}>
-                <img src={props.imageUrl} alt={props.alt}/>
+                <img src={props.image} alt={props.alt}/>
                 <button className={cx('like')} onClick={() => setLiked(!liked)}>
                     <Heart className={cx({'liked': liked})} />
                 </button>
@@ -21,7 +21,7 @@ const ProductTile = (props: Product) => {
             <div className={cx('attributes')}>
                 <span className={cx('name')}>{props.name}</span>
                 <span className={cx('type')}>{props.category}</span>
-                {props.price && <span className={cx('price')}>{`$${props.price}/kg`}</span>}
+                {props.price && <span className={cx('price')}>{props.price}</span>}
                 <span className={cx('source')}>{props.site}</span>
             </div>
             <Link to={`/product/${props.site}/${props.id}`} className={cx('product-link')} />
