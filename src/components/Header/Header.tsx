@@ -20,7 +20,7 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
     const {tabs} = props;
     const navigate = useNavigate();
-    const [showNav, setShowNav] = useState(true);
+    const [showNav, setShowNav] = useState(false);
 
     return (
         <header className={cx('header')}>
