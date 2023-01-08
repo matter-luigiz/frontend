@@ -21,6 +21,24 @@
 
     }
 
+    @media (screen and max-width: 700px) {
+      flex-direction: column;
+      gap: 1rem;
+
+      .inputs {
+        flex-direction: column;
+        gap: 1rem;
+
+        & > input {
+          width: 100%;
+        }
+
+        .cat-select {
+          width: 100%;
+        }
+      }
+    }
+
   }
 
   .categories {
