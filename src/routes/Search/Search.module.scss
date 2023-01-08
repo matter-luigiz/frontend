@@ -66,6 +66,24 @@
           left: 0;
         }
       }
+
+      @media (screen and max-width: 800px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+
+      @media (screen and max-width: 600px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      @media (screen and max-width: 450px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (screen and max-width: 350px) {
+        grid-template-columns: 1fr;
+      }
     }
+
+
   }
 }
