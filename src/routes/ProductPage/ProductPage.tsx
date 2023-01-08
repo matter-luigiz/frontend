@@ -54,7 +54,7 @@ const ProductPage = () => {
                     <h2>{product.name}</h2>
                     <span className={cx('source')}>{fullSite(product.site)}</span>
                     <p>{product.category}</p>
-                    {product.price && <h3>{product.price}</h3>}
+                    {product.price && <h3>Price: {product.price}</h3>}
                     {product.description && <div className={cx('description')}>
                         <h4>Information on Material</h4>
                         {product.description}
