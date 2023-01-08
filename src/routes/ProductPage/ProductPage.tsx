@@ -6,6 +6,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import externalLink from '../../icons/external.svg';
 import {useBackendReq} from "../../hooks";
 import Product, {convertToProduct} from "../../types/Product";
+import {fullSite} from "../../sites";
 
 const cx = classNames.bind(Styles);
 
@@ -51,6 +52,7 @@ const ProductPage = () => {
                 </div>
                 <div className={cx('product-text')}>
                     <h2>{product.name}</h2>
+                    <span className={cx('source')}>{fullSite(product.site)}</span>
                     <p>{product.category}</p>
                     {product.price && <h3>{product.price}</h3>}
                     {product.description && <div className={cx('description')}>
