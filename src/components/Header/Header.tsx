@@ -36,7 +36,7 @@ const Header = (props: HeaderProps) => {
                         {
                             tabs.map(tab =>
                                 <li key={tab.link} className={cx({'selected': tab.selected})}
-                                    onClick={() => navigate(tab.link)}>
+                                    onClick={() => {setShowNav(false); navigate(tab.link)}}>
                                     <Link to={tab.link}>{tab.text}</Link>
                                 </li>
                             )
