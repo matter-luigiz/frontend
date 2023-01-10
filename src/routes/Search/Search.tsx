@@ -78,8 +78,10 @@ const Search = () => {
 
     const displayCategories = (data: Category[]) => data.map(cat => (
         <div key={cat.name} className={cx('category')}>
-            <img src={cat.image} alt={cat.alt} />
-            {cat.name}
+            <div className={cx('cat-image')}>
+                <img src={cat.image} alt={cat.alt}/>
+            </div>
+            <span>{cat.name}</span>
             <Link to={`/search?cat=${cat.name}`} className={cx('cat-link')} />
         </div>
     ));
