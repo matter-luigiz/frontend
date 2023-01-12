@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Styles from './Home.module.scss';
 import classNames from "classnames/bind";
 import {Link, useNavigate} from "react-router-dom";
+import pana from '../../icons/pana.svg';
 
 const cx = classNames.bind(Styles);
 
@@ -26,7 +27,7 @@ const Home = () => {
                             <button className={'primary'} onClick={e => {e.preventDefault(); navigate(`/search?q=${search}&cat=all`);}}>Search</button>
                         </form>
                     </div>
-                    <img src={''} alt={''}/>
+                    <img src={pana} alt={''}/>
                 </div>
                 <div className={cx('learn')}>
                     <h2>Learn what certifications mean, make informed decisions.</h2>

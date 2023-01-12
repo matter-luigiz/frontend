@@ -1,5 +1,25 @@
 .home {
+  padding-left: 5vw;
+  padding-right: 5vw;
+
+  @media (screen and max-width: 900px) {
+    padding: 0;
+  }
+
   .heading {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+
+    img {
+      max-width: 20rem;
+    }
+
+    @media (screen and max-width: 800px) {
+      flex-direction: column-reverse;
+      gap: 1rem;
+    }
 
   }
 
