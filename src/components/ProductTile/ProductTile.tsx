@@ -19,11 +19,13 @@ const ProductTile = (props: Product) => {
                     <Heart className={cx({'liked': liked})} />
                 </button>
             </div>
-            <div className={cx('attributes')}>
-                <span className={cx('name')}>{props.name}</span>
-                <span className={cx('type')}>{props.category}</span>
-                {props.price && <span className={cx('price')}>Price: {props.price}</span>}
-                <span className={cx('source')}>{fullSite(props.site)}</span>
+            <div className={cx('attributes-ctr')}>
+                <div className={cx('attributes')}>
+                    <span className={cx('name')}>{props.name}</span>
+                    <span className={cx('type')}>{props.category}</span>
+                    {props.price && <span className={cx('price')}>Price: {props.price}</span>}
+                    <h4 className={cx('source')}>{fullSite(props.site)}</h4>
+                </div>
             </div>
             <Link to={`/product/${props.site}/${props.id}`} className={cx('product-link')} />
         </div>
