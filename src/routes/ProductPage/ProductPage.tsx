@@ -43,6 +43,12 @@ const ProductPage = () => {
         product = convertToProduct(data);
     }
 
+    const renderCerts = (product: Product) => {
+        return product.certifications?.map((cert: string) =>
+            <li key={cert} className={cx('cert')}>{cert}</li>
+        );
+    }
+
     return <div className={cx('product')}>
         <div className={'page'}>
             <Breadcrumbs prev={[{text: product.category, link: `/search?cat=${product.category}`}]} current={product.name} />
@@ -52,8 +58,9 @@ const ProductPage = () => {
                 </div>
                 <div className={cx('product-text')}>
                     <h2>{product.name}</h2>
-                    <span className={cx('source')}>{fullSite(product.site)}</span>
+                    <h3 className={cx('source')}>{fullSite(product.site)}</h3>
                     <p>{product.category}</p>
+                    {product.certifications && <ul className={cx('certifications')}>{renderCerts(product)}</ul>}
                     {product.price && <h3>Price: {product.price}</h3>}
                     {product.description && <div className={cx('description')}>
                         <h4>Information on Material</h4>
