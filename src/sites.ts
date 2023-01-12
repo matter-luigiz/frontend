@@ -1,7 +1,7 @@
 const fullSite = (site: string) => {
     switch (site) {
         case 'Cradle':
-            return 'Cradle to Cradle';
+            return 'Cradle to Cradle Product Registry';
         default:
             return site
     }
@@ -9,7 +9,7 @@ const fullSite = (site: string) => {
 
 const shortSite = (site: string) => {
     switch (site) {
-        case 'Cradle to Cradle':
+        case 'Cradle to Cradle Product Registry':
             return 'Cradle';
         default:
             return site;

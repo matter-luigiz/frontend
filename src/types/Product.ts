@@ -29,6 +29,10 @@ function convertToProduct(item: any): Product {
         alt: ''
     }
 
+    if (src.Site.includes('Cradle')) {
+        prod.certifications = ['Cradle to Cradle Certified'];
+    }
+
     let otherFields = {...src};
 
     delete otherFields.Image;
