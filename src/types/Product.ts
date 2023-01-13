@@ -18,7 +18,7 @@ function convertToProduct(item: any): Product {
     let prod: Product = {
         name: item[0],
         image: src.Image.slice(6),
-        category: src.category || src.Category || src['Commodity Type'],
+        category: src.category || src.Category || src['Commodity type'],
         price: src['Price per tons'] || src.Cost,
         site: src.Site,
         id: src.id || src['ID'],
@@ -37,7 +37,7 @@ function convertToProduct(item: any): Product {
 
     delete otherFields.Image;
     delete otherFields.Category;
-    delete otherFields['Commodity Type'];
+    delete otherFields['Commodity type'];
     delete otherFields['Price per tons'];
     delete otherFields['Cost'];
     delete otherFields.Site;
@@ -46,6 +46,8 @@ function convertToProduct(item: any): Product {
     delete otherFields.Link;
     delete otherFields.description;
     delete otherFields.Certifications;
+
+    console.log(otherFields);
 
     prod.otherFields = {...otherFields};
 
