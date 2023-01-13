@@ -47,8 +47,6 @@ function convertToProduct(item: any): Product {
     delete otherFields.description;
     delete otherFields.Certifications;
 
-    console.log(otherFields);
-
     prod.otherFields = {...otherFields};
 
     return prod;
