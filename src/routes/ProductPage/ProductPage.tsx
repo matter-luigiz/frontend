@@ -33,15 +33,17 @@ const ProductPage = () => {
                 Loading...
             </div>
         </div>
-    } else if (error) {
+    }
+
+    if (error) {
         return <div className={cx('product')}>
             <div className={'page'}>
-                {'Error :( : ' + error}
+                {'Failed to find Product Listing'}
             </div>
         </div>
-    } else {
-        product = convertToProduct(data);
     }
+
+    product = convertToProduct(data);
 
     const renderCerts = (product: Product) => {
         return product.certifications?.map((cert: string) =>
