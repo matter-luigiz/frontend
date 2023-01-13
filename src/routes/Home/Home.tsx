@@ -46,7 +46,7 @@ const Home = () => {
                     <div className={cx('signup')}>
                         <h3>Register your free account today and connect with sustainable suppliers</h3>
                         <form>
-                            <input type={'text'} className={'textinput'} placeholder={'Email'}/>
+                            <input type={'text'} className={'textinput ' + cx('email')} placeholder={'Email'}/>
                             <button className={'primary'} onClick={e => e.preventDefault()}>Get Started</button>
                         </form>
                     </div>
